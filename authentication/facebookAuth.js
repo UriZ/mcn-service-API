@@ -10,6 +10,7 @@ passport.use(new FacebookTokenStrategy({
         clientID: "1151370004993163",
         clientSecret: "50bb09be87258f04b79883ddb4655512"
     }, function(accessToken, refreshToken, profile, done) {
+        console.log("verify called");
         done(null, profile);
     }
 ));
@@ -36,12 +37,22 @@ let authenticateWithFB =  function createUser (req, res, next) {
                 res.send(err);
             }
         } else {
-            console.log("valid access toekn ")
 
-            // set user on the req object
-            req.user = user;
+            if (!user){
 
-            next();
+                // this happens when there is only bearer in the header
+                res.send("error validating user - missing token value")
+            }
+            else{
+                console.log("valid access toekn ")
+
+                // set user on the req object
+                req.user = user;
+
+                next();
+            }
+
+
         }
     })(req, res,next);
 

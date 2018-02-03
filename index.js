@@ -46,6 +46,11 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
     // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
     app.use(middleware.swaggerMetadata());
 
+
+    // Serve the Swagger documents and Swagger UI
+    app.use(middleware.swaggerUi());
+
+
     // used for passport fb authentication setup
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(passport.initialize());
@@ -56,9 +61,6 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
     // Route requests to controller
     app.use(middleware.swaggerRouter(swaggerOptions));
-
-    // Serve the Swagger documents and Swagger UI
-    app.use(middleware.swaggerUi());
 
     // Start the server
     http.createServer(app).listen(app.get('port'), function () {
