@@ -61,7 +61,41 @@
             }
           }
         }
+      },
+      "post": {
+        "x-swagger-router-controller": "api",
+        "operationId": "createUser",
+        "tags": ["/users"],
+        "description": "create user in database.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "The authorization token",
+            "default": "Bearer"
+          }
+
+
+
+        ],
+        "responses": {
+          "default": {
+            "description": "Invalid request.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "Successful request.",
+            "schema": {
+              "$ref": "#/definitions/UserCreated"
+            }
+          }
+        }
       }
+
     }
   },
   "definitions": {

@@ -8,4 +8,11 @@ module.exports.getUser = function getUser (req, res, next) {
 };
 
 
+module.exports.createUser = function getUser (req, res, next) {
+
+     res.send("user created!!!!!!" + JSON.stringify(req.user));
+
+};
+
+
 
