@@ -9,12 +9,12 @@
   "host": "localhost:5000",
   "basePath": "/api",
   "paths": {
-    "/auth/facebook/token": {
-      "post": {
+    "/users": {
+      "get": {
         "x-swagger-router-controller": "api",
-        "operationId": "createUser",
-        "tags": ["/auth/facebook/token"],
-        "description": "creates a user in the database.",
+        "operationId": "getUser",
+        "tags": ["/users"],
+        "description": "get user data from the database.",
         "parameters": [
           {
             "name": "fb_user_id",
