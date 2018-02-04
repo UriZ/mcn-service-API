@@ -35,7 +35,7 @@ module.exports.createUser = function getUser (req, res, next) {
          requestPromise(options)
              .then(function (result) {
                  console.log(result);
-                 res.send(result)
+                 res.send(result + "ok!!!!")
              })
              .catch(function (err) {
                  // API call failed...
