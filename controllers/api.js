@@ -16,7 +16,8 @@ module.exports.createUser = function getUser (req, res, next) {
 
 
          console.log("building options");
-
+         console.log(req.user.id.value);
+         console.log(req.user.id);
          let options = {
              uri: "https://mcn-user-service.herokuapp.com/api/users",
              qs: {
