@@ -1,6 +1,6 @@
 'use strict';
 let passport = require('passport');
-let request = require('request-promise');
+let requestPromise = require('request-promise');
 
 module.exports.getUser = function getUser (req, res, next) {
 
@@ -11,10 +11,11 @@ module.exports.getUser = function getUser (req, res, next) {
 
 module.exports.createUser = function getUser (req, res, next) {
 
-
+    console.log("create user called");
      if (req.user){
 
 
+         console.log("building options");
 
          let options = {
              uri: "https://mcn-user-service.herokuapp.com/api/users",
@@ -29,7 +30,7 @@ module.exports.createUser = function getUser (req, res, next) {
              json: true // Automatically parses the JSON string in the response
          };
 
-         rp(options)
+         requestPromise(options)
              .then(function (result) {
                  console.log(result);
                  res.send(result)
