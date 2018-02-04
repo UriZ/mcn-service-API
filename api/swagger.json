@@ -76,9 +76,6 @@
             "description": "The authorization token",
             "default": "Bearer"
           }
-
-
-
         ],
         "responses": {
           "default": {
@@ -95,6 +92,7 @@
           }
         }
       }
+
 
     }
   },

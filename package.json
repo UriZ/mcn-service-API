@@ -16,6 +16,7 @@
     "express-session": "^1.15.6",
     "passport": "^0.4.0",
     "passport-facebook-token": "^3.3.0",
+    "request": "^2.83.0",
     "swagger-tools": "0.10.3"
   },
   "devDependencies": {
