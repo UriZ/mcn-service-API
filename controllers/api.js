@@ -21,9 +21,9 @@ module.exports.createUser = function getUser (req, res, next) {
          let options = {
              uri: "https://mcn-user-service.herokuapp.com/api/users",
              qs: {
-                 fb_user_id: req.user.id.value,
-                 fb_user_name: req.user.displayName.value,
-                 email:req.user.emails.value[0]
+                 fb_user_id: req.user.id,
+                 fb_user_name: req.user.displayName,
+                 email:req.user.emails[0]
              },
              headers: {
                  'User-Agent': 'Request-Promise'
