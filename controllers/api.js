@@ -20,7 +20,8 @@ module.exports.createUser = function getUser (req, res, next) {
          console.log(req.user.id);
          let options = {
              method: 'POST',
-             uri: "https://mcn-user-service.herokuapp.com/api/users",
+             // uri: "https://mcn-user-service.herokuapp.com/api/users",
+             uri: process.env.USER_SERVICE_URL,
              qs: {
                  fb_user_id: req.user.id,
                  fb_user_name: req.user.displayName,
