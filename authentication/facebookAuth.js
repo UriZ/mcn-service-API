@@ -7,8 +7,8 @@ let passport = require('passport');
 let FacebookTokenStrategy = require('passport-facebook-token');
 
 passport.use(new FacebookTokenStrategy({
-        clientID: "1151370004993163",
-        clientSecret: "50bb09be87258f04b79883ddb4655512"
+        clientID: process.env.FB_CLIENT_ID,
+        clientSecret: process.env.FB_CLIENT_SECRET
     }, function(accessToken, refreshToken, profile, done) {
         console.log("verify called");
         done(null, profile);
