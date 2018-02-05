@@ -15,6 +15,7 @@ module.exports.createUser = function getUser (req, res, next) {
      if (req.user){
 
 
+         console.log(process.env.USER_SERVICE_URL + " user service url");
          console.log("building options");
          console.log(req.user.id.value);
          console.log(req.user.id);
