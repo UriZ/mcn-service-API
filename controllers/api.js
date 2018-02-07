@@ -16,11 +16,9 @@ module.exports.createUser = function getUser (req, res, next) {
 
 
          console.log(process.env.USER_SERVICE_URL + " user service url");
-         console.log("building options");
          console.log(req.user.id);
          let options = {
              method: 'POST',
-             // uri: "https://mcn-user-service.herokuapp.com/api/users",
              uri: process.env.USER_SERVICE_URL,
              qs: {
                  fb_user_id: req.user.id,
@@ -33,10 +31,11 @@ module.exports.createUser = function getUser (req, res, next) {
              json: true // Automatically parses the JSON string in the response
          };
 
+         // call user service
          requestPromise(options)
              .then(function (result) {
-                 console.log(result);
-                 res.send(JSON.stringify(result) + "ok!!!!")
+                 console.log(result + " is the result from user services");
+                 res.send(JSON.stringify(result));
              })
              .catch(function (err) {
 
