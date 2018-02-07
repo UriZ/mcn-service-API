@@ -17,7 +17,6 @@ module.exports.createUser = function getUser (req, res, next) {
 
          console.log(process.env.USER_SERVICE_URL + " user service url");
          console.log("building options");
-         console.log(req.user.id.value);
          console.log(req.user.id);
          let options = {
              method: 'POST',
@@ -40,7 +39,8 @@ module.exports.createUser = function getUser (req, res, next) {
                  res.send(JSON.stringify(result) + "ok!!!!")
              })
              .catch(function (err) {
-                 // API call failed...
+
+                 console.log("error from user serivce  " +  err);
              });
 
 
