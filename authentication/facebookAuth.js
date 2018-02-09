@@ -30,18 +30,18 @@ let authenticateWithFB =  function createUser (req, res, next) {
                 var oauthError = JSON.parse(err.oauthError.data);
                 console.log("oauth error ")
 
-                res.send(oauthError.error.message + " " + info);
+                res.status(401).send(oauthError.error.message + " " + info);
             } else {
                 console.log("some other error")
 
-                res.send(err);
+                res.status(400).send(err);
             }
         } else {
 
             if (!user){
 
                 // this happens when there is only bearer in the header
-                res.send("error validating user - missing token value")
+                res.status(400).send("error validating user - missing token value")
             }
             else{
                 console.log("valid access toekn ")
