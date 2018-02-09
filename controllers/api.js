@@ -79,11 +79,11 @@ module.exports.createUser = function signup (req, res, next) {
              .catch(function (err) {
 
                  console.log("error from user service  " +  err);
-                 res.send(err);
+                 res.status(500).send(err);
              });
      }
      else
-          res.send("errro creating user - missing identity on req");
+          res.status(401).send("errro creating user - missing identity on req");
 
 };
 
