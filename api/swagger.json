@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "MCN service API",
-    "description": "MCN service api - change me to real api !!!!!!",
+    "description": "MCN service api - all public facing methods",
     "version": "1.0"
   },
   "produces": ["application/json"],
