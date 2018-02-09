@@ -16,34 +16,12 @@
         "description": "get user data from the database.",
         "parameters": [
           {
-            "name": "fb_user_id",
-            "in": "query",
-            "description": "The FB user id derived from FB access token",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "Authorization",
+           "name": "Authorization",
             "in": "header",
             "type": "string",
             "required": true,
             "description": "The authorization token",
             "default": "Bearer"
-          },
-
-          {
-            "name": "name",
-            "in": "query",
-            "description": "The FB user name from FB access token",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "query",
-            "description": "The FB email from FB access token",
-            "required": false,
-            "type": "string"
           }
         ],
         "responses": {
