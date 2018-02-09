@@ -37,10 +37,10 @@ module.exports.getUser = function getUser (req, res, next) {
 
     }
     else {
+        res.send("error - missing identity on request");
 
     }
 
-     res.send("error - missing identity on request");
 
 };
 
