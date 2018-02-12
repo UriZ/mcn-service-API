@@ -27,18 +27,24 @@ module.exports.getUser = function getUser (req, res, next) {
         requestPromise(options)
             .then(function (result) {
                 console.log("success getting user");
-                res.send(JSON.stringify(result));
+
+                if (result != null){
+                    res.status(200).send(JSON.stringify(result));
+                }
+                else{
+                    res.status(500).send("no user found in db");
+                }
             })
             .catch(function (err) {
 
                 console.log("error getting user from db " +  err);
-                res.send(err);
+                res.status(500).send(err);
             });
 
 
     }
     else {
-        res.send("error - missing identity on request");
+        res.status(401).send("error - missing identity on request");
 
     }
 
@@ -75,11 +81,11 @@ module.exports.createUser = function signup (req, res, next) {
          requestPromise(options)
              .then(function (result) {
                  console.log(result + " is the result from user service");
-                 res.send(JSON.stringify(result));
+                 res.status(200).send(JSON.stringify(result));
              })
              .catch(function (err) {
 
-                 console.log("error from user service  " +  err);
+                 console.log("error creating user " +  err);
                  res.status(500).send(err);
              });
      }
