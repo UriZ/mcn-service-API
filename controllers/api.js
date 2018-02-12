@@ -26,11 +26,12 @@ module.exports.getUser = function getUser (req, res, next) {
 
         requestPromise(options)
             .then(function (result) {
+                console.log("success getting user");
                 res.send(JSON.stringify(result));
             })
             .catch(function (err) {
 
-                console.log("error from user service  " +  err);
+                console.log("error getting user from db " +  err);
                 res.send(err);
             });
 
