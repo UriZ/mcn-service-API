@@ -94,5 +94,45 @@ module.exports.createUser = function signup (req, res, next) {
 
 };
 
+/**
+ * get user preferences from db
+ * @param req
+ * @param res
+ */
+module.exports.getUserPref = (req, res)=>{
+    if (req.user){
+
+        // options for user service call
+        let options = {
+            method: 'get',
+            uri: process.env.USER_SERVICE_URL +"/" + req.user.id  + "/preferences",
+            headers: {
+                'User-Agent': 'Request-Promise'
+            },
+            json: true // Automatically parses the JSON string in the response
+        };
 
 
+        requestPromise(options)
+            .then(function (result) {
+                console.log("success getting user pref");
+
+                if (result != null){
+                    res.status(200).send(JSON.stringify(result));
+                }
+                else{
+                    res.status(500).send("no user pref found in db");
+                }
+            })
+            .catch(function (err) {
+
+                console.log("error getting user pref from db " +  err);
+                res.status(500).send(err);
+            });
+
+
+    }
+    else
+        res.status(401).send("errro creating user - missing identity on req");
+
+}

@@ -71,7 +71,42 @@
       }
 
 
+    },
+    "/users/preferences":{
+
+      "get": {
+        "x-swagger-router-controller": "api",
+        "operationId": "getUserPref",
+        "tags": ["/users"],
+        "description": "get user preferences from the database.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "The authorization token",
+            "default": "Bearer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Invalid request.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "Successful request.",
+            "schema": {
+              "$ref": "#/definitions/updatePref"
+            }
+          }
+        }
+      }
+
     }
+
   },
   "definitions": {
 
@@ -85,6 +120,33 @@
       "required" : ["userID"]
 
     },
+
+
+    "updatePref":{
+      "type" : "object",
+      "required": [
+        "currency",
+        "operation",
+        "amount"
+      ],
+      "properties":{
+        "currency":{
+          "type":"string"
+        },
+        "operation":{
+          "type": "string"
+        },
+        "amount":{
+          "type": "integer"
+        },
+        "publicProfile":{
+          "type": "boolean"
+        }
+
+      }
+
+    },
+
 
     "Error": {
       "properties": {
