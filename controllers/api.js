@@ -118,7 +118,7 @@ module.exports.getUserPref = (req, res)=>{
                 console.log("success getting user pref");
 
                 if (result != null){
-                    res.status(200).send(JSON.stringify(result));
+                    res.status(200).send(result);
                 }
                 else{
                     res.status(500).send("no user pref found in db");
