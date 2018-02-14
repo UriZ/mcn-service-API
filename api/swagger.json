@@ -103,6 +103,42 @@
             }
           }
         }
+      },
+      "put": {
+        "x-swagger-router-controller": "api",
+        "operationId": "updateUserPref",
+        "tags": ["/users"],
+        "description": "update user pref in database.",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "The authorization token",
+            "default": "Bearer"
+          },
+          {
+            "name": "preferences",
+            "in": "body",
+            "description": "user preferences",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updatePref"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Invalid request.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "Successful request."
+          }
+        }
       }
 
     }

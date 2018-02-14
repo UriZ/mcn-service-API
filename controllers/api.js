@@ -136,3 +136,41 @@ module.exports.getUserPref = (req, res)=>{
         res.status(401).send("errro creating user - missing identity on req");
 
 }
+
+module.exports.updateUserPref = (req,res)=>{
+    if (req.user){
+
+
+        let preferencesFromRequest = req.swagger.params.preferences.value;
+
+
+        // options for user service call
+        let options = {
+            method: 'put',
+            uri: process.env.USER_SERVICE_URL +"/" + req.user.id  + "/preferences",
+            headers: {
+                'User-Agent': 'Request-Promise'
+            },
+            body: preferencesFromRequest,
+            json: true // Automatically parses the JSON string in the response
+        };
+
+
+        requestPromise(options)
+            .then(function (result) {
+                console.log("success updating user pref");
+
+                    res.status(200).send(result);
+            })
+            .catch(function (err) {
+
+                console.log("error updating user pref  " +  err);
+                res.status(500).send(err);
+            });
+
+
+    }
+    else
+        res.status(401).send("errro creating user - missing identity on req");
+
+}
