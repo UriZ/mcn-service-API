@@ -13,10 +13,10 @@ module.exports.getUser = function getUser (req, res, next) {
         // options for user service call
         let options = {
             method: 'get',
-            uri: process.env.USER_SERVICE_URL,
-            qs: {
-                fb_user_id: req.user.id
-            },
+            uri: process.env.USER_SERVICE_URL + "/" +req.user.id +"/",
+            // qs: {
+            //     userID: req.user.id
+            // },
             headers: {
                 'User-Agent': 'Request-Promise'
             },
