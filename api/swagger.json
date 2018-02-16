@@ -72,6 +72,54 @@
 
 
     },
+
+
+    "/match": {
+
+      "get": {
+        "x-swagger-router-controller": "api",
+        "operationId": "getMatchForUser",
+        "tags": ["/match"],
+        "description": "find potential matches for user",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "type": "string",
+            "required": true,
+            "description": "The authorization token",
+            "default": "Bearer"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "user id"
+          }
+
+        ],
+        "responses": {
+          "default": {
+            "description": "Invalid request.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "200": {
+            "description": "Successful request.",
+            "schema": {
+              "$ref": "#/definitions/matchResponse"
+            }
+          }
+        }
+      }
+
+
+    },
+
+
+
     "/users/preferences":{
 
       "get": {
@@ -148,6 +196,7 @@
 
 
     "UserCreated":{
+      "type": "object",
       "properties": {
         "userID":{
           "type": "string"
@@ -155,6 +204,14 @@
       },
       "required" : ["userID"]
 
+    },
+
+
+    "matchResponse":{
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/UserCreated"
+      }
     },
 
 
