@@ -173,4 +173,66 @@ module.exports.updateUserPref = (req,res)=>{
     else
         res.status(401).send("errro creating user - missing identity on req");
 
-}
+};
+
+
+const extractTokenFromHeader = (req)=>{
+
+    // get authorization header
+    let tokenHeader = req.headers['authorization'];
+
+    if (tokenHeader.startsWith("Bearer ")){
+
+        let token = tokenHeader.substring("Bearer ".length);
+        return token;
+    }
+    else{
+        return null;
+    }
+};
+
+module.exports.getMatchForUser = (req,res)=>{
+
+    if (req.user){
+
+        let fb_user_id = req.user.id;
+        let token = extractTokenFromHeader(req);
+
+        if (!token){
+            res.status(401).send("malformed Authorization header");
+        }
+        // options for match service call
+        let options = {
+            method: 'get',
+            uri: process.env.MATCHING_SERVICE_URL,
+            qs:{
+                "fb_user_id":fb_user_id,
+                "fbToken":token
+            },
+
+            headers: {
+                'User-Agent': 'Request-Promise'
+            },
+            json: true // Automatically parses the JSON string in the response
+        };
+
+
+        requestPromise(options)
+            .then(function (result) {
+                console.log("success finding a match");
+
+                res.status(200).send(result);
+            })
+            .catch(function (err) {
+
+                console.log("error finding match " +  err);
+                res.status(500).send(err);
+            });
+    }
+    else{
+        res.status(401).send("error finding match for user - missing identity on req");
+
+    }
+
+
+};
