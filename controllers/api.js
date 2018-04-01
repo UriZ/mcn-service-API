@@ -69,7 +69,8 @@ module.exports.createUser = function signup (req, res, next) {
              qs: {
                  fb_user_id: req.user.id,
                  fb_user_name: req.user.displayName,
-                 email:req.user.emails[0]
+                 email:req.user.emails[0],
+                 profilePic:req.user.photos[0].value
              },
              headers: {
                  'User-Agent': 'Request-Promise'
