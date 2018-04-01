@@ -102,6 +102,8 @@ module.exports.createUser = function signup (req, res, next) {
 module.exports.getUserPref = (req, res)=>{
     if (req.user){
 
+        alert(JSON.stringify(req.user));
+
         // options for user service call
         let options = {
             method: 'get',
