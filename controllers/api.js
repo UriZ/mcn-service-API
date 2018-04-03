@@ -202,7 +202,7 @@ module.exports.getMatchForUser = (req,res)=>{
         let token = extractTokenFromHeader(req);
 
         if (!token){
-            res.status(401).send("malformed Authorization header");
+            res.status(400).send("malformed Authorization header");
         }
         // options for match service call
         let options = {
