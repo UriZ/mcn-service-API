@@ -86,8 +86,9 @@ module.exports.createUser = function signup (req, res, next) {
              })
              .catch(function (err) {
 
-                 console.log("error creating user " +  err);
-                 res.status(500).send(err);
+                 // we use err.error since request promise transforms the err object
+                 console.log("error creating user " +  JSON.stringify(err.error));
+                 res.status(500).send(err.error);
              });
      }
      else
