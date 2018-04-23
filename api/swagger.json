@@ -175,7 +175,17 @@
             "description": "The FB user id of the target user",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "connectionStatus",
+            "in": "body",
+            "description": "status to update for the connection - reject or accept",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/connectionStatus"
+            }
           }
+
         ],
         "responses": {
           "default": {
@@ -298,6 +308,20 @@
         "$ref": "#/definitions/UserCreated"
       }
     },
+
+    "connectionStatus":{
+      "type" : "object",
+      "required": [
+        "status"
+      ],
+      "properties":{
+        "status":{
+          "type":"string",
+          "enum": ["accepted", "rejected", "pending"]
+        }
+      }
+    },
+
 
 
     "updatePref":{

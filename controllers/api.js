@@ -219,6 +219,45 @@ module.exports.connectWithUser = (req,res)=>{
 
 }
 
+/**
+ * update the connection with the target user (accept/reject connection)
+ * @param req
+ * @param res
+ */
+module.exports.updateConnectionStatusWithUser = (req, res)=>{
+    if (req.user){
+
+        // options for match service call
+        let options = {
+            method: 'put',
+            uri: process.env.MATCHING_SERVICE_CONNECT_URL,
+            qs: {
+                fb_user_id: req.user.id,
+                fb_target_id: req.swagger.params.fb_target_id.value,
+            },
+            body: req.swagger.params.connectionStatus.value,
+            headers: {
+                'User-Agent': 'Request-Promise'
+            },
+            json: true // Automatically parses the JSON string in the response
+        };
+
+        // call matching service
+        requestPromise(options)
+            .then(function (result) {
+                res.status(200).send(JSON.stringify(result));
+            })
+            .catch(function (err) {
+
+                // we use err.error since request promise transforms the err object
+                console.log("error updating connection status:" +  JSON.stringify(err.error));
+                res.status(500).send(err.error);
+            });
+    }
+    else
+        res.status(401).send("error updating connection status - missing identity on req");
+
+}
 
 const extractTokenFromHeader = (req)=>{
 
