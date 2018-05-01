@@ -146,7 +146,7 @@ module.exports.updateUserPref = (req,res)=>{
 
 
         let preferencesFromRequest = req.swagger.params.preferences.value;
-
+        console.log("SERVICE API PREFERENCES"  +JSON.stringify(preferencesFromRequest));
 
         // options for user service call
         let options = {
