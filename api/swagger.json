@@ -339,7 +339,7 @@
           "type": "string"
         },
         "amount":{
-          "type": "integer"
+          "type": "string"
         },
         "publicProfile":{
           "type": "boolean"
