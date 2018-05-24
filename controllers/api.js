@@ -28,20 +28,14 @@ module.exports.getUser = function getUser (req, res, next) {
             .then(function (result) {
                 console.log("success getting user");
 
-                if (result != null){
                     res.status(200).send(JSON.stringify(result));
-                }
-                else{
-                    res.status(500).send("no user found in db");
-                }
             })
             .catch(function (err) {
 
-                console.log("error getting user from db " +  err);
-                res.status(500).send(err);
+                // we use err.error since request promise transforms the err object
+                console.log("error getting user from db " +   JSON.stringify(err.error));
+                res.status(500).send(err.error);
             });
-
-
     }
     else {
         res.status(401).send("error - missing identity on request");
